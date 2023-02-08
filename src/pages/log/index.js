@@ -1,6 +1,7 @@
 import styles from "./styles.module.css";
 import React from "react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Log() {
   const [state, setState] = useState(true);
@@ -97,14 +98,16 @@ function Log() {
                     onChange={(e) => setPass(e.target.value)}
                   />
                   <br />
-                  <button
-                    className={styles.input}
-                    name="submitup"
-                    type="submit"
-                    value="Sign Up"
-                  >
-                    Sign In
-                  </button>
+                  <Link to="/home">
+                    <button
+                      className={styles.input}
+                      name="submitup"
+                      type="submit"
+                      value="Sign Up"
+                    >
+                      Sign In
+                    </button>
+                  </Link>
                 </form>
               </div>
             </div>
