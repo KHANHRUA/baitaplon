@@ -151,8 +151,10 @@
     border-radius: 12px;
     border-color: burlywood;
     margin-left: 40%;
+    cursor: pointer;
 }
 
 button.input{
     margin-top: 15px;
+    cursor: pointer;
 }

@@ -8,6 +8,8 @@ function Log() {
   const [buttonstate, setButtonState] = useState("Sign Up");
   const [sign, setSign] = useState("");
   const [pass, setPass] = useState("");
+  const [signup, setSignUp] = useState("");
+  const [passup, setPassUp] = useState("");
   const [content, setContent] = useState(
     "if you haven't have account please Sign Up"
   );
@@ -84,8 +86,8 @@ function Log() {
                     className={styles.input}
                     name="name"
                     type="text"
-                    value={sign}
-                    onChange={(e) => setSign(e.target.value)}
+                    value={signup}
+                    onChange={(e) => setSignUp(e.target.value)}
                   />
                   <br />
                   <label for="pass">Password:</label>
@@ -94,8 +96,8 @@ function Log() {
                     className={styles.input}
                     name="pass"
                     type="password"
-                    value={pass}
-                    onChange={(e) => setPass(e.target.value)}
+                    value={passup}
+                    onChange={(e) => setPassUp(e.target.value)}
                   />
                   <br />
                   <Link to="/home">

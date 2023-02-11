@@ -1,0 +1,9 @@
+.container{
+    width: 100vh;
+}
+.header{
+    position: fixed;
+}
+.outlet{
+    margin-left: 300px; 
+}
