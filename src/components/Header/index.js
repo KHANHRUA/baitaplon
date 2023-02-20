@@ -37,23 +37,27 @@ function Header() {
           </svg>
           Notification
         </button>
-        <button className={styles.buttonnav}>Profile</button>
+        <Link className={styles.link} to="/home/profile">
+          <div className={styles.buttonnav}>Profile</div>
+        </Link>
       </div>
       <div className={styles.endheader}>
         <div>
           {state && (
-            <button
-              className={
-                state === false
-                  ? styles.buttonlogoutclose
-                  : styles.buttonlogoutopen
-              }
-            >
-              <svg data-testid="LogoutIcon" className={styles.icons}>
-                <LogoutIcon color="primary" />
-              </svg>
-              Log out
-            </button>
+            <Link to="/" className={styles.link}>
+              <div
+                className={
+                  state === false
+                    ? styles.buttonlogoutclose
+                    : styles.buttonlogoutopen
+                }
+              >
+                <svg data-testid="LogoutIcon" className={styles.icons}>
+                  <LogoutIcon color="primary" />
+                </svg>
+                Log out
+              </div>
+            </Link>
           )}
         </div>
         <button className={styles.buttonsetting} onClick={handleClick}>
