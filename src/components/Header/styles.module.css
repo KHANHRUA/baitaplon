@@ -4,6 +4,7 @@
     width: 300px;
     background-color: rgb(0, 0, 0);
     justify-content: center;
+    position: relative;
 }
 
 .link{
@@ -39,6 +40,7 @@
     display: flex;
     justify-items: center;
     position: relative;
+    text-decoration: none;
 }
 
 .buttonnav:hover{

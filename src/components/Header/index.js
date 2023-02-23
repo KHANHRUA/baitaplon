@@ -19,12 +19,12 @@ function Header() {
         <div className={styles.logo}></div>
       </Link>
       <div className={styles.navi}>
-        <button className={styles.buttonnav}>
+        <Link to="/home" className={styles.buttonnav}>
           <svg data-testid="HomeIcon" className={styles.icons}>
             <HomeIcon />
           </svg>
           Home
-        </button>
+        </Link>
         <button className={styles.buttonnav}>
           <svg data-testid="SearchIcon" className={styles.icons}>
             <SearchIcon />

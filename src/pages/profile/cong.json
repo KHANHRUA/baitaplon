@@ -4,5 +4,6 @@
     "dateofbirth":"24-09-2002",
     "hometown":"Hà Nam",
     "school":"PTIT",
-    "branch":"Điện tử viễn thông"
+    "branch":"Điện tử viễn thông",
+    "post" : [{}]
 }
