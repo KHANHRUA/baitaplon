@@ -4,8 +4,25 @@
     background-color: #000000;
     display: flex;
     margin-left: 301px;
-    justify-content: center;
     height: auto;
+}
+
+.persionalinformation{
+    color: aliceblue;
+}
+
+.containbuttonupdateinfor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonupdateinfor{
+    height: 40px;
+    padding: 0px 10px;
+    border-radius: 15px;
+    cursor: pointer;
+    border-style: none;
 }
 
 .wrapper{
@@ -67,11 +84,15 @@
 }
 
 .content{
-    height: 200px;
+    height: auto;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-top: 5vh;
+    margin: 50px;
+    margin-top: 150px;
+    background-color: gray;
+    border-radius: 12px;
 }
 
 .infor{
@@ -124,4 +145,39 @@
 .name1{
     color: azure;
     font-size: 24px;
+}
+
+.containlist{
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background-color: rgb(94, 94, 94);
+    bottom: 0;
+    right: 0;
+    border-radius: 12px 12px 0px 0px;
+}
+
+.friendinformation{
+    display: flex;
+    height: 80px;
+    align-items: center;
+    margin: 5px;
+}
+
+.friendinformation:hover{
+    background-color: gray;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+.friendavatar{
+    width: 60px;
+    height: 60px;
+    border-radius: 360px;
+    margin: 10px;
+}
+
+.friendname{
+    font-size: 35px;
+    color: white;
 }

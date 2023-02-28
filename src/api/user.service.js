@@ -2,17 +2,17 @@ import ApiService from "./api.service";
 
 const UserSignup = {
   signupuser(params) {
-    return ApiService.post("signup", params);
+    return ApiService.post("register", params);
   },
 };
 
 export { UserSignup };
 
-const UserDonates = {
-  userdonates(params) {
-    return ApiService.post("checkuser", params);
+
+const UserLogin = {
+  loginuser(params) {
+    return ApiService.post("login", params);
   },
 };
 
-export { UserDonates };
-
+export { UserLogin };

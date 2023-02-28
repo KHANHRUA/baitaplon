@@ -116,12 +116,12 @@
     justify-items: center;
     position: relative;
     animation-name: open;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
 }
 
 @keyframes open{
-    0%{height:0px;opacity: 0;}
-    100%{height:25px;opacity: 1;}
+    0%{transform: scaleY(0)  ;opacity: 0;}
+    100%{transform: scaleY(-25px);opacity: 1;}
 }
 
 
@@ -143,4 +143,13 @@
 .endheader{
     position: absolute;
     bottom: 10px;left: 5px;
+}
+
+.profileava{
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    left: 18px;
+    top: 12px;
+    border-radius: 360px;
 }

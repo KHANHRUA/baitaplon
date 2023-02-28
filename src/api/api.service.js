@@ -2,7 +2,7 @@ import axiosBase from "axios";
 
 const axios = axiosBase.create({
   // This is development host
-  baseURL: "",
+  baseURL: "http://localhost:8000/api/auth",
   timeout: 15000,
 });
 
@@ -39,18 +39,18 @@ const ApiService = {
     }
   },
 
-  async getTypeBlob(resource, params) {
-    try {
-      const axios = axiosBase.create({
-        baseURL: process.env.VUE_APP_URL,
-        timeout: 10000,
-        responseType: "blob",
-      });
-      return await axios.get(`/${resource}`, { params: params });
-    } catch (err) {
-      throw new Error(`ApiService: ${err.message}`);
-    }
-  },
+//   async getTypeBlob(resource, params) {
+//     try {
+//       const axios = axiosBase.create({
+//         baseURL: process.env.VUE_APP_URL,
+//         timeout: 10000,
+//         responseType: "blob",
+//       });
+//       return await axios.get(`/${resource}`, { params: params });
+//     } catch (err) {
+//       throw new Error(`ApiService: ${err.message}`);
+//     }
+//   },
 };
 
 export default ApiService;

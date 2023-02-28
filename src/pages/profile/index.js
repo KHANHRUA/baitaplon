@@ -5,36 +5,30 @@ import cong from "./cong.json";
 import vinh from "./vinh.json";
 import hoang from "./hoang.json";
 import thang from "./pthang.json";
-
+import Modal from 'react-modal';
 
 function Profile() {
+  const [modalIsOpen, setIsOpen] = React.useState(false);
   const [Profile, setProfile] = useState(khanh);
-  const callpost = (temp) =>{
+  const callpost = (temp) => {
     console.log("aaaa");
-    return(
+    return (
       <div className={styles.post}>
         <div className={styles.nameandava}>
-          <img
-            src={Profile.avatar}
-            alt="errorimg"
-            className={styles.avatar1}
-          />
+          <img src={Profile.avatar} alt="errorimg" className={styles.avatar1} />
           <div className={styles.name1}>{Profile.name}</div>
         </div>
         <img src={temp.img} alt="errorimg" className={styles.img1} />
       </div>
-    )
-  }
-  const allpost = () =>{
+    );
+  };
+  const allpost = () => {
     const a = [];
-    for(let i = 0;i< Profile.post.length;i++)
-    {
-      a.push(callpost(Profile.post[i]))
+    for (let i = 0; i < Profile.post.length; i++) {
+      a.push(callpost(Profile.post[i]));
     }
-    return(
-      a
-    )
-  }
+    return a;
+  };
   const handleClick = () => {
     setProfile(khanh);
   };
@@ -52,6 +46,20 @@ function Profile() {
   };
   return (
     <div className={styles.container}>
+      <div>
+        <div className={styles.content}>
+          <h1 className={styles.persionalinformation}>personal information</h1>
+          <div className={styles.infor}>Date of birth: {Profile.dateofbirth}</div>
+          <div className={styles.infor}>Hometown: {Profile.hometown}</div>
+          <div className={styles.infor}>Study at: {Profile.school}</div>
+          <div className={styles.infor}>Branch: {Profile.branch}</div>
+          <div className={styles.containbuttonupdateinfor}>
+            <button className={styles.buttonupdateinfor} onClick={setIsOpen(true)}>
+              update information
+            </button>
+          </div>
+        </div>
+      </div>
       <div className={styles.wrapper}>
         <div className={styles.header}>
           <div className={styles.avatarborder}>
@@ -61,12 +69,8 @@ function Profile() {
         <div className={styles.name}>
           <div>{Profile.name}</div>
         </div>
-        <div className={styles.content}>
-          <div className={styles.infor}>Ngày sinh: {Profile.dateofbirth}</div>
-          <div className={styles.infor}>Quê quán: {Profile.hometown}</div>
-          <div className={styles.infor}>Đang học tại: {Profile.school}</div>
-          <div className={styles.infor}>Nghành: {Profile.branch}</div>
-        </div>
+
+
         <div className={styles.link}>
           <button className={styles.button} onClick={handleClick}>
             khánh
@@ -84,11 +88,24 @@ function Profile() {
             Thắng
           </button>
         </div>
-        <div className={styles.allpost}>
-          {allpost()}
+        <div className={styles.allpost}>{allpost()}</div>
+      </div>
+      <div className={styles.containlist}>
+        <div className={styles.listfriend}>
+          <div className={styles.friendinformation}>
+            <div>
+              <img
+                src={Profile.avatar}
+                alt="avatar"
+                className={styles.friendavatar}
+              />
+            </div>
+            <div className={styles.friendname}>{Profile.name}</div>
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
 export default Profile;
