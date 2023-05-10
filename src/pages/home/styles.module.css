@@ -52,9 +52,9 @@
 }
 
 .img{
-    width: 34vw;
-    height: 430px;
-    margin-left: 2vw;
+    width: 32vw;
+    height: 390px;
+    margin-left: 3vw;
 }
 
 .nameandava{
@@ -66,4 +66,71 @@
 .name{
     color: azure;
     font-size: 24px;
+}
+
+.heart{
+    width: 100px;
+    height: 100px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.heartleft{
+    width: 60px;
+    height: 40px;
+    background-color: rgb(255, 255, 255);
+    rotate: 45deg;
+    border-radius: 40px 0px 0px 40px;
+    position: absolute;
+    left: 5px;
+}
+
+.heartright{
+    width: 60px;
+    height: 40px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 40px 0px 0px 40px;
+    rotate: 135deg;
+    position: absolute;
+}
+
+.heartbutton{
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    background-color: inherit;
+    border-style: none;
+    top: -10px;
+    left: 7px;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.heartleftlike{
+    width: 60px;
+    height: 40px;
+    background-color: rgb(255, 0, 0);
+    rotate: 45deg;
+    border-radius: 40px 0px 0px 40px;
+    position: absolute;
+    left: 5px;
+}
+
+.heartrightlike{
+    width: 60px;
+    height: 40px;
+    background-color: rgb(255, 0, 0);
+    border-radius: 40px 0px 0px 40px;
+    rotate: 135deg;
+    position: absolute;
+}
+
+.likecount{
+    color: white;
+    font-size: 30px;
+    margin-top: -45px;
+    margin-left: 45px;
 }

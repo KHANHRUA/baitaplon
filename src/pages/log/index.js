@@ -1,9 +1,8 @@
 import styles from "./styles.module.css";
 import React from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { UserSignup , UserLogin } from "../../api/user.service";
-
+// import { Link } from "react-router-dom";
+import { UserSignup, UserLogin, GetInfor } from "../../api/user.service";
 function Log() {
   const [state, setState] = useState(true);
   const [buttonstate, setButtonState] = useState("Sign Up");
@@ -36,18 +35,31 @@ function Log() {
       alert("error");
     }
   };
+  const callinfor = async () => {
+    try {
+      let response = await GetInfor.getinfor({
+        Authorization: "Bearer " + sessionStorage["jwtToken"],
+      });
+      sessionStorage.setItem("response", response.data);
+    } catch {
+      alert("false");
+    }
+  };
 
   const login = async () => {
-    let response = await UserLogin.loginuser({
-      username: sign,
-      password: pass,
-    });
-    if (response.status === 200) {
-      alert("enjoy");
+    try {
+      let response = await UserLogin.loginuser({
+        username: sign,
+        password: pass,
+      });
+      const token = response.data;
+      sessionStorage.setItem("jwtToken", token);
+      sessionStorage.setItem("username", sign);
+      callinfor();
+      alert("success");
       window.location.replace("/home");
-    }
-    if (response.data === 1) {
-      alert("error");
+    } catch {
+      alert("username or password incorrect");
     }
   };
 
@@ -69,7 +81,7 @@ function Log() {
               <div className={styles.logo}></div>
               <div className={styles.label}>
                 <div>
-                  <label for="name">Username:</label>
+                  <label htmlFor="name">Username:</label>
                   <br />
                   <input
                     className={styles.input}
@@ -79,7 +91,7 @@ function Log() {
                     onChange={(e) => setSignUp(e.target.value)}
                   />
                   <br />
-                  <label for="pass">Password:</label>
+                  <label htmlFor="pass">Password:</label>
                   <br />
                   <input
                     className={styles.input}
@@ -107,7 +119,7 @@ function Log() {
               <div className={styles.logo}></div>
               <div className={styles.label}>
                 <div>
-                  <label for="name">Username:</label>
+                  <label htmlFor="name">Username:</label>
                   <br />
                   <input
                     className={styles.input}
@@ -117,7 +129,7 @@ function Log() {
                     onChange={(e) => setSign(e.target.value)}
                   />
                   <br />
-                  <label for="pass">Password:</label>
+                  <label htmlFor="pass">Password:</label>
                   <br />
                   <input
                     className={styles.input}
@@ -128,15 +140,15 @@ function Log() {
                   />
                   <br />
                   {/* <Link to="/home"> */}
-                    <button
-                      className={styles.input}
-                      name="submitup"
-                      type="submit"
-                      value="Sign in"
-                      onClick={login}
-                    >
-                      Sign In
-                    </button>
+                  <button
+                    className={styles.input}
+                    name="submitup"
+                    type="submit"
+                    value="Sign in"
+                    onClick={login}
+                  >
+                    Sign In
+                  </button>
                   {/* </Link> */}
                 </div>
               </div>

@@ -16,6 +16,7 @@ function Header() {
   };
   return (
     <div className={styles.container}>
+      
       <Link to="/home">
         <div className={styles.logo}></div>
       </Link>
