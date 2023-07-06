@@ -7,9 +7,11 @@ import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import LogoutIcon from "@mui/icons-material/Logout";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useState } from "react";
-import khanh from "../../pages/profile/khanh.json"
+
+
 
 function Header() {
+  let user = JSON.parse(sessionStorage['response']);
   const [state, setState] = useState(false);
   const handleClick = () => {
     setState(!state);
@@ -41,7 +43,7 @@ function Header() {
         </button>
         <Link className={styles.link} to="/home/profile">
           <div className={styles.buttonnav}>
-            <img src = {khanh.avatar} alt ="anh loi" className={styles.profileava}/>
+            <img src = {user.avatar} alt ="anh loi" className={styles.profileava}/>
             Profile
           </div>
         </Link>

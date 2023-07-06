@@ -3,11 +3,7 @@ import axiosBase from "axios";
 const axios = axiosBase.create({
   // This is development host
   baseURL: "http://localhost:8080",
-  timeout: 15000,
-  // headers: {
-  //   "Access-Control-Allow-Origin": "*",
-
-  // },
+  timeout: 15000
 });
 
 const ApiService = {
@@ -31,7 +27,9 @@ const ApiService = {
 
   async put(resource, body) {
     try {
-      return await axios.put(`/${resource}`, body);
+      return await axios.put(`/${resource}`,body,{headers: {
+        Authorization: "Bearer " + sessionStorage["jwtToken"],
+      }});
     } catch (err) {
       throw new Error(`ApiService: ${err}`);
     }

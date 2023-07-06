@@ -37,7 +37,7 @@
     color: aliceblue;
     font-size: 20px;
     border-radius: 360px;
-    border-top: none;
+    border: none;
     display: flex;
     justify-items: center;
     position: relative;
@@ -68,7 +68,7 @@
     display: flex;
     justify-items: center;
     position: relative;
-    border-top: none;
+    border: none;
 }
 
 .buttonsetting:hover{

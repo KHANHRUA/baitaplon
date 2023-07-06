@@ -1,70 +1,85 @@
 import React, { useState } from "react";
 import styles from "./styles.module.css";
-import { GetInfor } from "../../api/user.service";
-import khanh from "./khanh.json";
-
-let profile = khanh;
+import { PutIntro, GetInfor } from "../../api/user.service";
+import EditIcon from "@mui/icons-material/Edit";
+import { Link } from "react-router-dom";
 
 function Profile() {
-  // const token = localStorage.getItem('jwtToken');
-  // const headers = {
-  //   'Authorization' : 'Bearer ${token}'
-  // }
-  // const created = async () =>{
-  //   let response = await GetInfor.getinfor(
-  //     headers
-  //   );
-  //   profile = response;
-  // }
-  // created();
+  let user = JSON.parse(sessionStorage["response"]);
+
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [Name, setName] = useState(profile.name);
-  const [Dateofbirth, setDateofbirth] = useState(profile.birthday);
-  const [Hometown, setHometown] = useState(profile.addrees);
-  const [School, setSchool] = useState(profile.school);
-  const [Branch, setBranch] = useState(profile.phone);
+  const [Dateofbirth, setDateofbirth] = useState(user.introduct.birthday);
+  const [Hometown, setHometown] = useState(user.introduct.addrees);
+  const [School, setSchool] = useState(user.introduct.school);
+  const [Enjoy, setEnjoy] = useState(user.introduct.enjoy);
+
+  const callinfor = async () => {
+    try {
+      let response = await GetInfor.getinfor({
+        Authorization: "Bearer " + sessionStorage["jwtToken"],
+      });
+      sessionStorage.setItem("response", JSON.stringify(response.data));
+      console.log(response);
+      window.location.replace("/home");
+      window.location.replace("/home/profile");
+    } catch {
+      alert("false");
+    }
+  };
+
+  const UpdateIntro = async () => {
+    try {
+      let response = await PutIntro.putintro({
+        birthday: Dateofbirth,
+        addrees: Hometown,
+        school: School,
+        enjoy: Enjoy,
+        story: "",
+        company:""
+      });
+      console.log(response);
+      callinfor();
+    } catch {
+      alert("session login expired");
+      window.location.replace("/");
+    }
+  };
 
   const handleopen = () => {
     setIsOpen(!modalIsOpen);
-  };
-
-  const callfriend = (temp) => {
-    return (
-      <div className={styles.friendinformation}>
-        <div>
-          <img
-            src={temp.ava}
-            alt="avatar"
-            className={styles.friendavatar}
-          />
-        </div>
-        <div className={styles.friendname}>{temp.name}</div>
-      </div>
-    );
-  };
-  const allfriend = () => {
-    const a = [];
-    for (let i = 0; i < profile.friend.length; i++) {
-      a.push(callfriend(profile.friend[i]));
-    }
-    return a;
   };
 
   const callpost = (temp) => {
     return (
       <div className={styles.post}>
         <div className={styles.nameandava}>
-          <img src={Profile.avatar} alt="errorimg" className={styles.avatar1} />
-          <div className={styles.name1}>{Profile.name}</div>
+          <img src={user.avatar} alt="errorimg" className={styles.avatarP} />
+          <div className={styles.nameP}>{user.fullname}</div>
         </div>
-        <img src={temp.img} alt="errorimg" className={styles.img1} />
+        {user.posts[temp].urlimage !== null ? (
+          <div>
+            <div className={styles.contentP}>{user.posts[temp].content}</div>
+            <div className={styles.titleP}>{user.posts[temp].title}</div>
+            <img
+              src={user.posts[temp].urlimage}
+              alt="errorimg"
+              className={styles.img}
+            />
+          </div>
+        ) : (
+          <div className={styles.title}>
+            <div>{user.posts[temp].title}</div>
+          </div>
+        )}
       </div>
     );
   };
+
   const allpost = () => {
+    // console.log(user.posts.length);
     const a = [];
-    for (let i = 0; i < profile.post.length; i++) {
-      a.push(callpost(profile.post[i]));
+    for (let i = 0; i < user.posts.length; i++) {
+      a.push(callpost(i));
     }
     return a;
   };
@@ -77,16 +92,6 @@ function Profile() {
               X
             </button>
             <div className={styles.form}>
-              <div className={styles.align}>
-                <label className={styles.label} htmlFor="name">
-                  Full name:
-                </label>
-                <input
-                  className={styles.changedata}
-                  value={Name}
-                  onChange={(e) => setName(e.target.value)}
-                ></input>
-              </div>
               <div className={styles.align}>
                 <label className={styles.label} htmlFor="dob">
                   Date of birth:
@@ -119,28 +124,28 @@ function Profile() {
               </div>
               <div className={styles.align}>
                 <label className={styles.label} htmlFor="br">
-                  Major:
+                  Enjoy:
                 </label>
                 <input
                   className={styles.changedata}
-                  value={Branch}
-                  onChange={(e) => setBranch(e.target.value)}
+                  value={Enjoy}
+                  onChange={(e) => setEnjoy(e.target.value)}
                 ></input>
               </div>
             </div>
-            <button className={styles.updatebutton}>update</button>
+            <button className={styles.updatebutton} onClick={UpdateIntro}>
+              update
+            </button>
           </div>
         </div>
       )}
       <div>
         <div className={styles.content}>
           <h1 className={styles.persionalinformation}>personal information</h1>
-          <div className={styles.infor}>
-            Date of birth: {Dateofbirth}
-          </div>
+          <div className={styles.infor}>Date of birth: {Dateofbirth}</div>
           <div className={styles.infor}>Hometown: {Hometown}</div>
           <div className={styles.infor}>Study at: {School}</div>
-          <div className={styles.infor}>Major: {Branch}</div>
+          <div className={styles.infor}>Enjoy: {Enjoy}</div>
           <div className={styles.containbuttonupdateinfor}>
             <button className={styles.buttonupdateinfor} onClick={handleopen}>
               update information
@@ -151,28 +156,20 @@ function Profile() {
       <div className={styles.wrapper}>
         <div className={styles.header}>
           <div className={styles.avatarborder}>
-            <img src={profile.avatar} alt="avatar" className={styles.avatar} />
+            <img src={user.avatar} alt="avatar" className={styles.avatar} />
           </div>
         </div>
         <div className={styles.name}>
-          <div>{profile.name}</div>
+          <div>
+            {user.fullname}
+            <Link to="setmain">
+              <svg data-testid="EditIcon" className={styles.icons}>
+                <EditIcon color="disable" fontSize="small" />
+              </svg>
+            </Link>
+          </div>
         </div>
         <div className={styles.allpost}>{allpost()}</div>
-      </div>
-      <div className={styles.containlist}>
-        <div className={styles.listfriend}>
-          {allfriend()}
-          {/* <div className={styles.friendinformation}>
-            <div>
-              <img
-                src={Profile.avatar}
-                alt="avatar"
-                className={styles.friendavatar}
-              />
-            </div>
-            <div className={styles.friendname}>{Profile.name}</div>
-          </div> */}
-        </div>
       </div>
     </div>
   );

@@ -2,7 +2,8 @@ import styles from "./styles.module.css";
 import React from "react";
 import { useState } from "react";
 // import { Link } from "react-router-dom";
-import { UserSignup, UserLogin, GetInfor } from "../../api/user.service";
+import { UserSignup, UserLogin, GetInfor ,GetPost} from "../../api/user.service";
+
 function Log() {
   const [state, setState] = useState(true);
   const [buttonstate, setButtonState] = useState("Sign Up");
@@ -31,16 +32,29 @@ function Log() {
     if (response.status === 201) {
       alert("register successful!");
     }
-    if (response.data === 1) {
-      alert("error");
-    }
   };
+
   const callinfor = async () => {
     try {
       let response = await GetInfor.getinfor({
         Authorization: "Bearer " + sessionStorage["jwtToken"],
       });
-      sessionStorage.setItem("response", response.data);
+      sessionStorage.setItem("response", JSON.stringify(response.data));
+      console.log(response);
+      callpost();
+    } catch {
+      alert("false");
+    }
+  };
+
+  const callpost = async () => {
+    try {
+      let response = await GetPost.getpost({
+        Authorization: "Bearer " + sessionStorage["jwtToken"],
+      });
+      sessionStorage.setItem("post", JSON.stringify(response.data));
+      console.log(response);
+      window.location.replace("/home");
     } catch {
       alert("false");
     }
@@ -57,7 +71,6 @@ function Log() {
       sessionStorage.setItem("username", sign);
       callinfor();
       alert("success");
-      window.location.replace("/home");
     } catch {
       alert("username or password incorrect");
     }

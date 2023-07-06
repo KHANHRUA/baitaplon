@@ -38,7 +38,8 @@
 .post{
     margin-top: 40px;
     width: 38vw;
-    height: 600px;
+    height: auto;
+    min-height: 150px;
     background-color: rgb(0, 0, 0);
     border-radius: 40px;
     
@@ -68,69 +69,32 @@
     font-size: 24px;
 }
 
-.heart{
-    width: 100px;
-    height: 100px;
+.content{
+    color: white;
+    font-size: 25px;
+    margin-left: 30px;
+}
+
+.title{
+    color: white;
+    margin-left: 35px;
+    font-size: 20px;
+}
+
+.icons{
+    width: 80px;
+    height: 80px;
+    color: blue;
+    font-size: 25px;
     position: relative;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
-    margin-left: 20px;
-}
-
-.heartleft{
-    width: 60px;
-    height: 40px;
-    background-color: rgb(255, 255, 255);
-    rotate: 45deg;
-    border-radius: 40px 0px 0px 40px;
-    position: absolute;
-    left: 5px;
-}
-
-.heartright{
-    width: 60px;
-    height: 40px;
-    background-color: rgb(255, 255, 255);
-    border-radius: 40px 0px 0px 40px;
-    rotate: 135deg;
-    position: absolute;
-}
-
-.heartbutton{
-    width: 70px;
-    height: 70px;
-    position: absolute;
-    background-color: inherit;
-    border-style: none;
-    top: -10px;
-    left: 7px;
+    align-items: center;
     cursor: pointer;
-    z-index: 2;
+
 }
 
-.heartleftlike{
-    width: 60px;
-    height: 40px;
-    background-color: rgb(255, 0, 0);
-    rotate: 45deg;
-    border-radius: 40px 0px 0px 40px;
+.likec{
     position: absolute;
-    left: 5px;
-}
-
-.heartrightlike{
-    width: 60px;
-    height: 40px;
-    background-color: rgb(255, 0, 0);
-    border-radius: 40px 0px 0px 40px;
-    rotate: 135deg;
-    position: absolute;
-}
-
-.likecount{
-    color: white;
-    font-size: 30px;
-    margin-top: -45px;
-    margin-left: 45px;
+    
 }

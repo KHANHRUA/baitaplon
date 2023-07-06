@@ -4,6 +4,7 @@ import Log from "../pages/log";
 import Layout from "../layouts";
 import Profile from "../pages/profile";
 import Home from "../pages/home";
+import SetMainInformation from "../pages/setmaininfomation";
 
 function AppRouter() {
   return (
@@ -13,7 +14,7 @@ function AppRouter() {
         <Route path="/home" element={<Layout />}>
           <Route path="/home" element={<Home />} />
           <Route path="/home/profile" element={<Profile />} />
-          <Route path="/home/profile/khanh" element={<Profile />} />
+          <Route path="/home/profile/setmain" element={<SetMainInformation />} />
         </Route>
       </Routes>
     </BrowserRouter>
